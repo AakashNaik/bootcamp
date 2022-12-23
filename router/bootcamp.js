@@ -1,17 +1,11 @@
 const express = require('express');
 
 const router = express.Router();
+const {getBootcamp,getBootcamps, createBootcamp, updateBootcamp, deleteBootcamp} = require('../controller/bootcamp');
 
-router.get('/',
-(req,res)=>{console.log('get method called'); res.send('<h1>confirmed get</h1>')});
 
-router.post('/',
-(req,res)=>{console.log('get method called'); res.send('confirmed post')});
+router.route('/').get(getBootcamps).post(createBootcamp);
 
-router.delete('/:id',
-(req,res)=>{console.log('get method called'); res.send(`confirmed delete id: ${req.params.id}`)});
-
-router.put('/:id',
-(req,res)=>{console.log('get method called'); res.send(`confirmed put id: ${req.params.id}`)});
+router.route('/:id').get(getBootcamp).put(updateBootcamp).delete(deleteBootcamp);
 
 module.exports = router;
